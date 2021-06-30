@@ -24,12 +24,12 @@ class AgreementUnsign extends AliBaseObject implements IGatewayRequest
         // alipay_user_id 与 alipay_logon_id 不能同时为空，若都传以 alipay_user_id 为准
         // agreement_no 与 external_agreement_no 不能同时为空，若都传以 agreement_no 为准
         $bizContent = [
-            'alipay_user_id'  => $requestParams['alipay_user_id'] ?? '',
-            'alipay_logon_id' => $requestParams['alipay_logon_id'] ?? '',
-            'personal_product_code'  => $requestParams['alipay_logon_id'] ?? 'CYCLE_PAY_AUTH_P',
-            'sign_scene'      => $requestParams['sign_scene'] ?? '',
-            'external_agreement_no'  => $requestParams['external_agreement_no'] ?? '',
-            'agreement_no'    => $requestParams['agreement_no'] ?? '',
+            'alipay_user_id'  => $requestParams['contract_user_id'] ?? '',
+            'alipay_logon_id' => $requestParams['contract_logon_id'] ?? '',
+            'personal_product_code'  => $requestParams['contract_product_code'] ?? 'CYCLE_PAY_AUTH_P',
+            'sign_scene'      => $requestParams['contract_sign_scene'] ?? '',
+            'external_agreement_no'  => $requestParams['internal_contract_id'] ?? '',
+            'agreement_no'    => $requestParams['contract_id'] ?? '',
             'extend_params'   => $requestParams['extend_params'] ?? '',
         ];
         $bizContent = ArrayUtil::paraFilter($bizContent);
