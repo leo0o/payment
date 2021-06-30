@@ -12,12 +12,14 @@
 namespace Payment\Proxies;
 
 use InvalidArgumentException;
+use Payment\Contracts\IAgreementProxy;
 use Payment\Contracts\IGatewayRequest;
 use Payment\Contracts\IPayNotify;
 use Payment\Contracts\IPayProxy;
 use Payment\Contracts\IQueryProxy;
 use Payment\Contracts\ITransferProxy;
 use Payment\Exceptions\GatewayException;
+use Payment\Gateways\Alipay\AgreementUnsign;
 use Payment\Gateways\Alipay\Bill;
 use Payment\Gateways\Alipay\CancelTrade;
 use Payment\Gateways\Alipay\CloseTrade;
@@ -38,7 +40,7 @@ use Payment\Supports\BaseObject;
  * @version : 1.0.0
  * @desc    : 支付宝的代理类
  **/
-class AlipayProxy extends BaseObject implements IPayProxy, IQueryProxy, ITransferProxy
+class AlipayProxy extends BaseObject implements IPayProxy, IQueryProxy, ITransferProxy, IAgreementProxy
 {
     /**
      * 支付操作
@@ -231,6 +233,16 @@ class AlipayProxy extends BaseObject implements IPayProxy, IQueryProxy, ITransfe
     {
         try {
             $obj = new TransferQuery();
+            return $obj->request($requestParams);
+        } catch (GatewayException $e) {
+            throw $e;
+        }
+    }
+
+    public function agreementUnsign(array $requestParams)
+    {
+        try {
+            $obj = new AgreementUnsign();
             return $obj->request($requestParams);
         } catch (GatewayException $e) {
             throw $e;
