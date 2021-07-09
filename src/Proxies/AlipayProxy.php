@@ -239,6 +239,11 @@ class AlipayProxy extends BaseObject implements IPayProxy, IQueryProxy, ITransfe
         }
     }
 
+    /**
+     * @param array $requestParams
+     * @return mixed
+     * @throws GatewayException
+     */
     public function agreementUnsign(array $requestParams)
     {
         try {

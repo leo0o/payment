@@ -30,7 +30,7 @@ class AgreementUnsign extends AliBaseObject implements IGatewayRequest
             'sign_scene'      => $requestParams['contract_sign_scene'] ?? '',
             'external_agreement_no'  => $requestParams['internal_contract_id'] ?? '',
             'agreement_no'    => $requestParams['contract_id'] ?? '',
-            'extend_params'   => $requestParams['extend_params'] ?? '',
+            'extend_params'   => $requestParams['extend_params'] ?? [],
         ];
         $bizContent = ArrayUtil::paraFilter($bizContent);
 

@@ -87,9 +87,9 @@ abstract class AliBaseObject extends BaseObject
         }
 
         // 初始 支付宝网关地址
-        $this->gatewayUrl = 'https://openapi.alipay.com/gateway.do';
+        $this->gatewayUrl = 'https://openapi.alipay.com/gateway.do?charset=utf-8';
         if ($this->isSandbox) {
-            $this->gatewayUrl = 'https://openapi.alipaydev.com/gateway.do';
+            $this->gatewayUrl = 'https://openapi.alipaydev.com/gateway.do?charset=utf-8';
         }
     }
 
@@ -192,7 +192,9 @@ abstract class AliBaseObject extends BaseObject
 
         // 支付宝新版本  需要转码
         foreach ($params as &$value) {
-            $value = StrUtil::characet($value, 'utf-8');
+            if (is_string($value)) {
+                $value = StrUtil::characet($value, 'utf-8');
+            }
         }
 
         $params = ArrayUtil::arraySort($params);
