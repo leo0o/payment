@@ -65,7 +65,7 @@ class AppCharge extends AliBaseObject implements IGatewayRequest
             'body'            => $requestParams['body'] ?? '',
             'subject'         => $requestParams['subject'] ?? '',
             'out_trade_no'    => $requestParams['trade_no'] ?? '',
-            'time_expire'     => $timeExpire ? date('Y-m-d H:i', $timeExpire) : '',
+            'time_expire'     => $timeExpire ? date('Y-m-d H:i:s', $timeExpire) : '',
             'goods_type'      => $requestParams['goods_type'] ?? '',
             'promo_params'    => $requestParams['promo_params'] ?? '',
             'passback_params' => urlencode($requestParams['return_params'] ?? ''),
